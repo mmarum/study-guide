@@ -9,9 +9,18 @@
   * Slicing a List
     - `list1[1:4]`
 
-* Deleting a List
+  * Deleting a List
     - `del list1[3]`
     - `del list1`
+
+  * methods of list objects:
+    - list.append(x), list.extend(iterable), list.insert(i, x), list.remove(x), list.pop([i]), list.clear(), list.count(x), list.sort(key=None, reverse=False), list.reverse(), list.copy()
+
+  * Return zero-based index in the list of the first item whose value is equal to x:
+    - `list.index(x[, start[, end]])`
+
+  * Use list as stacks aka "last-in, first-out"
+    - `append(), pop()`
 
 # TUPLE
 `colors=('Red','Green','Blue')`
@@ -20,7 +29,7 @@
 # SET
 `myset={3,1,2}`
   * Like a list but does not hold duplicate values and is unordered
-  * Can do union and intersection, difference
+  * Can do union and intersection, difference (membership testing)
 ```
     A = {0, 2, 4, 6, 8};
     B = {1, 2, 3, 4, 5};
@@ -40,13 +49,15 @@ for key, val in mydict.iteritems(): # or items()
   * The dict() constructor builds dictionaries from sequences of key-value pairs
 ```
     dict([('sape', 4139), ('guido', 4127), ('jack', 4098)])
-    {'sape': 4139, 'guido': 4127, 'jack': 4098}
+    > {'sape': 4139, 'guido': 4127, 'jack': 4098}
 ```
   * Show index and value
 ```
 for i, v in enumerate(['tic', 'tac', 'toe']):
     print(i, v)
 ```
+  * list(d) on a dict returns a list of all keys
+`sorted(d)`
 
 # Generators
 `yield`
@@ -59,6 +70,16 @@ for i, v in enumerate(['tic', 'tac', 'toe']):
 `[(x, y) for x in [1,2,3] for y in [3,1,4] if x != y]`
 `[abs(x) for x in vec]`
 `[(x, x**2) for x in range(6)]`
+  * The following list comprehension will transpose rows and columns:
+```
+matrix = [ [1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], ]
+[[row[i] for row in matrix] for i in range(4)]
+```
+or
+```
+list(zip(*matrix))
+> [[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
+```
 ```
 from math import pi
 [str(round(pi, i)) for i in range(1, 6)]
@@ -77,4 +98,16 @@ list(zip(*matrix))
 `a = {x for x in 'abracadabra' if x not in 'abc'}`
 
 # Dict Comprehensions
-`{x: x**2 for x in (2, 4, 6)}`
+```
+{x: x**2 for x in (2, 4, 6)}
+> {2: 4, 4: 16, 6: 36}
+```
+
+# Fibonacci
+```
+def fib(n):
+    a, b = 0, 1
+    while a < n:
+        print(a, end=' ')
+        a, b = b, a+b
+```
