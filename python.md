@@ -22,6 +22,9 @@
   * Use list as stacks aka "last-in, first-out"
     - `append(), pop()`
 
+  * Sort by value:
+    - `new_var = sorted(var, key=lambda x: int(x['whatevs']), reverse=True)`
+
 # TUPLE
 `colors=('Red','Green','Blue')`
   * Like a list but is immutable
@@ -105,9 +108,20 @@ list(zip(*matrix))
 
 # Fibonacci
 ```
-def fib(n):
-    a, b = 0, 1
-    while a < n:
-        print(a, end=' ')
-        a, b = b, a+b
+a, b = 0, 1
+while a < 100:
+    print(a, end=' ')
+    a, b = b, a+b
 ```
+
+# Underscores
+  * `_var` A single underscore in front of a variable name is a hint that a variable is meant for internal use only.
+  * `var_` You can append a single underscore to break the naming conflict like class_ or def_.
+  * `__var` rewrite the attribute name in order to avoid naming conflicts in subclasses; Like: `dir(t)` `['_ClassName__var'...]`
+  * `__var__` reserved for special use in the language; Like; __init__ or __call__
+  * `_` used as a name to indicate that a variable is temporary or insignificant; like `for _ in range(32)`
+
+# Useful built-in functions
+  * `dir()`
+
+dbader.org
