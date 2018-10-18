@@ -30,7 +30,8 @@
   * Like a list but is immutable
 
 # SET
-`myset={3,1,2}`
+`myset={3,1,2}` OR
+`emptySet = set()`
   * Like a list but does not hold duplicate values and is unordered
   * Can do union and intersection, difference (membership testing)
 ```
@@ -42,6 +43,12 @@
     print("Symmetric difference :", A ^ B)
 ```
   * to create an empty set you have to use set(), not {}
+  * Add-to, remove-from set
+  `setName.add('Thingy')`
+  `setName.remove('Thingy')` OR
+  `setName.discard('Premiere')` # Won't error if item not in set
+  * Use a set to remove duplicates from a list.
+  `print(list(set([1, 2, 3, 1, 7])))`
 
 # DICTIONARY
 `mydict={1:2,2:4,3:6}`
@@ -106,6 +113,15 @@ list(zip(*matrix))
 > {2: 4, 4: 16, 6: 36}
 ```
 
+  * Another way to merge two dicts
+```
+x = {'a': 1, 'b': 2}
+y = {'b': 3, 'c': 4}
+z = {**x, **y}
+z
+> {'c': 4, 'a': 1, 'b': 3}
+```
+
 # Fibonacci
 ```
 a, b = 0, 1
@@ -125,3 +141,26 @@ while a < 100:
   * `dir()`
 
 dbader.org
+
+# Function argument unpacking example
+```
+def myfunc(x, y, z):
+    print(x, y, z)
+tuple_vec = (1, 0, 1)
+dict_vec = {'x': 1, 'y': 0, 'z': 1}
+myfunc(*tuple_vec)
+> 1, 0, 1
+myfunc(**dict_vec)
+> 1, 0, 1
+```
+
+# lambda (function expressions) a shortcut for declaring small and anonymous functions:
+```
+add = lambda x, y: x + y
+add(5, 3)
+> 8
+```
+```
+(lambda x, y: x + y)(5, 3)
+8
+```
