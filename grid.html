@@ -27,6 +27,7 @@ a:hover {
 </head>
 <body>
 <!--
+version-1: GOAL: figure out an algorithm for a spiral (one square at a time) on a grid of squares
 version-2: color-on one random starting position (stays on) then select neighbors color-on
 -->
 <div id="wrapper">
@@ -49,7 +50,7 @@ function build(i) {
 	document.getElementById("grid").appendChild(node);
 	document.getElementsByTagName("a")[i-1].setAttribute("id", "pos_"+i);
 	document.getElementsByTagName("a")[i-1].setAttribute("class", "default");
-	document.getElementsByTagName("a")[i-1].setAttribute("onmouseover", "changed1("+i+")");
+	//document.getElementsByTagName("a")[i-1].setAttribute("onmouseover", "changed1("+i+")");
 	document.getElementsByTagName("a")[i-1].setAttribute("onclick", "changed2("+i+")");
 	if (i % num) {
 		//
@@ -57,29 +58,70 @@ function build(i) {
 		document.getElementById("grid").innerHTML += "<div class='row_divider'></div>";
 	}
 }
+
 function changed1(i) {
 	document.getElementById("pos_"+i).style.backgroundColor = "black";
 }
+
+function spiral(i) {
+	var spiral_colors = ["blue", "red", "green", "purple", "orange", "brown", "yellow", "olive", "violet"]
+	var x = Math.floor((Math.random() * spiral_colors.length));
+	var spiral_color = spiral_colors[x];
+	document.getElementById("pos_"+i).style.backgroundColor = spiral_color;
+}
+
 async function changed2(i) {
-	document.getElementById("pos_"+i).style.backgroundColor = "blue";
-	await sleep(sleep_time);
-	document.getElementById("pos_"+(i-num)).style.backgroundColor = "red";
-	await sleep(sleep_time);
-	document.getElementById("pos_"+(i-num+1)).style.backgroundColor = "green";
-	await sleep(sleep_time);
-	document.getElementById("pos_"+(i+1)).style.backgroundColor = "purple";
-	await sleep(sleep_time);
-	document.getElementById("pos_"+(i+num+1)).style.backgroundColor = "orange";
-	await sleep(sleep_time);
-	document.getElementById("pos_"+(i+num)).style.backgroundColor = "brown";
-	await sleep(sleep_time);
-	document.getElementById("pos_"+(i+num-1)).style.backgroundColor = "yellow";
-	await sleep(sleep_time);
-	document.getElementById("pos_"+(i-1)).style.backgroundColor = "olive";
-	await sleep(sleep_time);
-	document.getElementById("pos_"+(i-num-1)).style.backgroundColor = "violet";
+	var spiral_path = [
+		i,
+		i-num,
+		i-num+1,
+		i+1,
+		i+num+1,
+		i+num,
+		i+num-1,
+		i-1,
+		i-num-1
+	];
+	var spiral_path2 = [
+		i,
+		i-num*2,
+		i-num*2+2,
+		i+2,
+		i+num*2+2,
+		i+num*2,
+		i+num*2-2,
+		i-2,
+		i-num*2-2
+	];
+var spiral_path3 = [
+		i,
+		i-num*3,
+		i-num*3+3,
+		i+3,
+		i+num*3+3,
+		i+num*3,
+		i+num*3-3,
+		i-3,
+		i-num*3-3
+	];
+	var n;
+	for (n = 1; n < spiral_path.length; n++) {
+		spiral(spiral_path[n]);
+		await sleep(sleep_time);
+	}
+	var y;
+	for (y = 1; y < spiral_path2.length; y++) {
+		spiral(spiral_path2[y]);
+		await sleep(sleep_time);
+	}
+	var z;
+	for (z = 1; z < spiral_path3.length; z++) {
+		spiral(spiral_path2[z]);
+		await sleep(sleep_time);
+	}
 	console.log(i);
 }
+
 var i;
 for (i = 1; i < num*num+1; i++) {
 	build(i);
@@ -96,7 +138,7 @@ async function randomy() {
 		await sleep(sleep_time);
 	}
 }
-randomy();
+//randomy();
 </script>
 </body>
 </html>
