@@ -1,0 +1,102 @@
+<html>
+<head>
+<style>
+body {
+	background-color: gray;
+}
+a {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border: 1px solid #707070;
+	margin-right: 1px;
+}
+a:hover {
+	background-color: black;
+}
+.row_divider {
+	height: 1px;
+}
+#wrapper {
+	text-align: center;
+}
+#grid {
+	display: inline-block;
+}
+</style>
+</head>
+<body>
+<!--
+version-2: color-on one random starting position (stays on) then select neighbors color-on
+-->
+<div id="wrapper">
+<div id="grid"></div>
+
+</div>
+
+<script>
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+var num = 20;
+var sleep_time = 50;
+
+function build(i) {
+	var node = document.createElement("a");
+	var textnode = document.createTextNode(' '); // i
+	node.appendChild(textnode);
+	document.getElementById("grid").appendChild(node);
+	document.getElementsByTagName("a")[i-1].setAttribute("id", "pos_"+i);
+	document.getElementsByTagName("a")[i-1].setAttribute("class", "default");
+	document.getElementsByTagName("a")[i-1].setAttribute("onmouseover", "changed1("+i+")");
+	document.getElementsByTagName("a")[i-1].setAttribute("onclick", "changed2("+i+")");
+	if (i % num) {
+		//
+	} else {
+		document.getElementById("grid").innerHTML += "<div class='row_divider'></div>";
+	}
+}
+function changed1(i) {
+	document.getElementById("pos_"+i).style.backgroundColor = "black";
+}
+async function changed2(i) {
+	document.getElementById("pos_"+i).style.backgroundColor = "blue";
+	await sleep(sleep_time);
+	document.getElementById("pos_"+(i-num)).style.backgroundColor = "red";
+	await sleep(sleep_time);
+	document.getElementById("pos_"+(i-num+1)).style.backgroundColor = "green";
+	await sleep(sleep_time);
+	document.getElementById("pos_"+(i+1)).style.backgroundColor = "purple";
+	await sleep(sleep_time);
+	document.getElementById("pos_"+(i+num+1)).style.backgroundColor = "orange";
+	await sleep(sleep_time);
+	document.getElementById("pos_"+(i+num)).style.backgroundColor = "brown";
+	await sleep(sleep_time);
+	document.getElementById("pos_"+(i+num-1)).style.backgroundColor = "yellow";
+	await sleep(sleep_time);
+	document.getElementById("pos_"+(i-1)).style.backgroundColor = "olive";
+	await sleep(sleep_time);
+	document.getElementById("pos_"+(i-num-1)).style.backgroundColor = "violet";
+	console.log(i);
+}
+var i;
+for (i = 1; i < num*num+1; i++) {
+	build(i);
+}
+
+async function randomy() {
+	var n;
+	for (n = 1; n < num*num+1; n++) {
+		var x = Math.floor((Math.random() * num*num) + 1);
+		var c = Math.floor((Math.random() * 20) + 1);
+		var d = c * 8;
+		var new_color = "rgb("+d+","+d+","+d+")";
+		document.getElementById("pos_"+x).style.backgroundColor = new_color;
+		await sleep(sleep_time);
+	}
+}
+randomy();
+</script>
+</body>
+</html>
