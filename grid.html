@@ -41,7 +41,7 @@ function sleep(ms) {
 }
 
 var num = 20;
-var sleep_time = 50;
+var sleep_time = 20; // 50
 
 function build(i) {
 	var node = document.createElement("a");
@@ -71,6 +71,9 @@ function spiral(i) {
 }
 
 async function changed2(i) {
+	// There's a pattern here
+	// Just need to define it 
+	// and turn it into an algorithm
 	var spiral_path = [
 		i,
 		i-num,
@@ -80,43 +83,38 @@ async function changed2(i) {
 		i+num,
 		i+num-1,
 		i-1,
-		i-num-1
-	];
-	var spiral_path2 = [
-		i,
+		i-num-1,
+		i-num*2-1,
 		i-num*2,
+		i-num*2+1,
 		i-num*2+2,
+		i-num+2,
 		i+2,
+		i+num+2,
 		i+num*2+2,
+		i+num*2+1,
 		i+num*2,
+		i+num*2-1,
 		i+num*2-2,
+		i+num-2,
 		i-2,
-		i-num*2-2
-	];
-var spiral_path3 = [
-		i,
+		i-num-2,
+		i-num*2-2,
+		i-num*3-2,
+		i-num*3-1,
 		i-num*3,
+		i-num*3+1,
+		i-num*3+2,
 		i-num*3+3,
+		i-num*2+3,
+		i-num*1+3,
 		i+3,
-		i+num*3+3,
-		i+num*3,
-		i+num*3-3,
-		i-3,
-		i-num*3-3
+		i+num+3,
+		i+num*2+3
 	];
 	var n;
 	for (n = 1; n < spiral_path.length; n++) {
 		spiral(spiral_path[n]);
-		await sleep(sleep_time);
-	}
-	var y;
-	for (y = 1; y < spiral_path2.length; y++) {
-		spiral(spiral_path2[y]);
-		await sleep(sleep_time);
-	}
-	var z;
-	for (z = 1; z < spiral_path3.length; z++) {
-		spiral(spiral_path2[z]);
 		await sleep(sleep_time);
 	}
 	console.log(i);
@@ -134,11 +132,13 @@ async function randomy() {
 		var c = Math.floor((Math.random() * 20) + 1);
 		var d = c * 8;
 		var new_color = "rgb("+d+","+d+","+d+")";
-		document.getElementById("pos_"+x).style.backgroundColor = new_color;
-		await sleep(sleep_time);
+		//document.getElementById("pos_"+x).style.backgroundColor = new_color;
+		//await sleep(sleep_time);
+		changed2(x)
+		await sleep(300);
 	}
 }
-//randomy();
+randomy();
 </script>
 </body>
 </html>
