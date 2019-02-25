@@ -67,7 +67,9 @@ function spiral(i) {
 	var spiral_colors = ["blue", "red", "green", "purple", "orange", "brown", "yellow", "olive", "violet"]
 	var x = Math.floor((Math.random() * spiral_colors.length));
 	var spiral_color = spiral_colors[x];
-	document.getElementById("pos_"+i).style.backgroundColor = spiral_color;
+	if (i > 0 && i <= num*num) {
+		document.getElementById("pos_"+i).style.backgroundColor = spiral_color;
+	}
 }
 
 async function changed2(i) {
@@ -135,7 +137,7 @@ async function randomy() {
 		//document.getElementById("pos_"+x).style.backgroundColor = new_color;
 		//await sleep(sleep_time);
 		changed2(x)
-		await sleep(300);
+		await sleep(700);
 	}
 }
 randomy();
