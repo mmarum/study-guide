@@ -6,16 +6,17 @@ body {
 }
 a {
 	display: inline-block;
-	width: 20px;
-	height: 20px;
-	border: 1px solid #707070;
-	margin-right: 1px;
+	width: 5px;
+	height: 5px;
+	border-top: 1px solid #707070;
+	border-left: 1px solid #707070;
+	margin-right: 0px;
 }
 a:hover {
 	background-color: black;
 }
 .row_divider {
-	height: 1px;
+	height: 0px;
 }
 #wrapper {
 	text-align: center;
@@ -40,7 +41,7 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-var num = 20;
+var num = 100;
 var sleep_time = 20; // 50
 
 function build(i) {
@@ -140,7 +141,7 @@ async function randomy() {
 		await sleep(700);
 	}
 }
-randomy();
+//randomy();
 </script>
 </body>
 </html>
