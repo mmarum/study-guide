@@ -164,3 +164,23 @@ add(5, 3)
 (lambda x, y: x + y)(5, 3)
 8
 ```
+
+# deque queue
+```
+from collections import deque
+queue = deque()
+queue.append(1)
+queue.append(2)
+queue.popleft()
+```
+
+# recursion
+```
+def countdown(x):
+    if x == 0:
+        return True
+    else:
+        print(x, "...")
+        countdown(x-1)
+countdown(5)
+```
