@@ -184,3 +184,40 @@ def countdown(x):
         countdown(x-1)
 countdown(5)
 ```
+```
+def power(num, pwr):
+    if pwr == 0:
+        return 1
+    else:
+        return num * power(num, pwr-1)
+print(f"5 to the 3rd power is {power(5, 3)}")
+```
+```
+def factorial(num):
+    if num == 0:
+        return 1
+    else:
+        return num * factorial(num-1)
+print(f"the factorial of 4 is {factorial(4)}")
+```
+
+# Sorting
+
+bubble sort exercise:
+```
+def bubbleSort(dataset):
+    for i in range(len(dataset) - 1, 0, -1):
+        for j in range(i):
+            if dataset[j] > dataset[j+1]:
+                temp = dataset[j]
+                dataset[j] = dataset[j+1]
+                dataset[j+1] = temp
+    print(dataset)
+bubbleSort([6, 20, 8, 19, 56, 23, 87, 41, 49, 53])
+```
+merge sort (divide and conquer, uses recursion)
+```
+
+```
+
+
